@@ -2,6 +2,22 @@
 
 # Includes:
   - 4x4,3x3 matrices
-    - d 
-  - 4D, 3D & 2D vectors with operations
-  - 
+    - Transpose
+    - Rotations
+    - Scale
+    - Translation
+    - Perspective
+    - LookAt
+    - Inverse
+    - Conversions
+    - Operations
+  - 4D, 3D & 2D vectors
+    - Normalize
+    - Crossproduct
+    - Dotproduct
+    - Conversions
+    - Operations
+  - Random essential functions
+    - Conversion to radians
+    
+    
