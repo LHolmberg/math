@@ -5,34 +5,6 @@
 
 namespace Math
 {
-	typedef struct Quaternion
-	{
-	public:
-		union {
-			struct {
-				float r, i, j, k;
-			};
-			float data[4];
-		};
-
-		void Normalize()
-		{
-			float d = r * r + i * i + j * j + k * k;
-
-			if (d == 0)
-			{
-				r = 1;
-				return;
-			}
-
-			d = ((float)1.0) / sqrt(d);
-			r *= d;
-			i *= d;
-			j *= d;
-			k *= d;
-		}
-	};
-
 	typedef struct Vector3
 	{
 		float x, y, z;
@@ -82,21 +54,18 @@ namespace Math
 			return(*this);
 		}
 
-
-
 	} Vector3;
 
 	typedef struct Vector2
 	{
-		float x, y, z;
+		float x, y;
 
 		Vector2() = default;
 
-		Vector2(float X, float Y, float Z)
+		Vector2(float X, float Y)
 		{
 			x = X;
 			y = Y;
-			z = Z;
 		}
 
 		Vector2& operator*=(float n)
@@ -232,16 +201,24 @@ namespace Math
 	//Prototypes
 	Vector3 Normalize(const Vector3 a);
 	Vector3 Crossproduct(const Vector3 a, const Vector3 b);
+
 	inline Vector3 operator *(const Vector3& v1, const Vector3& v2);
 	inline Vector3 operator +(const Vector3& v1, const Vector3& v2);
 	inline Vector3 operator -(const Vector3& v1, const Vector3& v2);
 	inline Vector3 operator /(const Vector3& v1, const Vector3& v2);
+
 	float Dotproduct(const Vector3 a, const Vector3 b);
 	float ToRadians(float deg);
 	float Cotangens(float deg);
 	float Magnitude(Vector3 a);
+
 	Vector3 V4toV3(const Vector4& v1);
-	Vector3 Mult(Vector3 v, float s);
+
+	Vector4 MultByScalar(Vector4 v, float s);
+	Vector3 MultByScalar(Vector3 v, float s);
+	Vector2 MultByScalar(Vector2 v, float s);
+
+
 	Matrix4 Transpose(Matrix4 m);
 	Matrix4 operator *(Matrix4 a, Matrix4 b);
 	Matrix4 RotateX(float t);

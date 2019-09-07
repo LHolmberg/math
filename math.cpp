@@ -2,6 +2,31 @@
 
 namespace Math
 {
+
+	///////////
+
+	inline Vector4 operator *(const Vector4& v1, const Vector4& v2)
+	{
+		return (Vector4(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.n * v2.n));
+	}
+
+	inline Vector4 operator +(const Vector4& v1, const Vector4& v2)
+	{
+		return (Vector4(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.n + v2.n));
+	}
+
+	inline Vector4 operator -(const Vector4& v1, const Vector4& v2)
+	{
+		return (Vector4(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.n - v2.n));
+	}
+
+	inline Vector4 operator /(const Vector4& v1, const Vector4& v2)
+	{
+		return (Vector4(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.n / v2.n));
+	}
+
+	///////////
+
 	inline Vector3 operator *(const Vector3& v1, const Vector3& v2)
 	{
 		return (Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z));
@@ -22,6 +47,30 @@ namespace Math
 		return (Vector3(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z));
 	}
 
+	///////////
+
+	inline Vector2 operator *(const Vector2& v1, const Vector2& v2)
+	{
+		return (Vector2(v1.x * v2.x, v1.y * v2.y));
+	}
+
+	inline Vector2 operator +(const Vector2& v1, const Vector2& v2)
+	{
+		return (Vector2(v1.x + v2.x, v1.y + v2.y));
+	}
+
+	inline Vector2 operator -(const Vector2& v1, const Vector2& v2)
+	{
+		return (Vector2(v1.x - v2.x, v1.y - v2.y));
+	}
+
+	inline Vector2 operator /(const Vector2& v1, const Vector2& v2)
+	{
+		return (Vector2(v1.x / v2.x, v1.y / v2.y));
+	}
+
+	///////////
+
 	Vector3 Normalize(const Vector3 a)
 	{
 		return (Vector3(a.x / Magnitude(a), a.y / Magnitude(a), a.z / Magnitude(a)));;
@@ -32,16 +81,29 @@ namespace Math
 		return (Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x));
 	}
 
-	Vector3 V4toV3(const Vector4& v1)
+	///////////
+
+	Vector3 V4toV3(const Vector4& v1) // Convert a v3 to v4
 	{
 		return (Vector3(v1.x, v1.y, v1.z));
 	}
 
-	Vector3 Mult(Vector3 v, float s)
+	///////////
+
+	Vector4 MultByScalar(Vector4 v, float s) // Multiply a vectorX by a scalar
+	{
+		return (Vector4(v.x * s, v.y * s, v.z * s, v.n * s));
+	}
+
+	Vector3 MultByScalar(Vector3 v, float s)
 	{
 		return (Vector3(v.x * s, v.y * s, v.z * s));
 	}
 
+	Vector2 MultByScalar(Vector2 v, float s)
+	{
+		return (Vector2(v.x * s, v.y * s));
+	}
 
 	/*
 	Random
@@ -83,7 +145,6 @@ namespace Math
 		));
 	}
 
-
 	Matrix4 operator *(Matrix4 a, Matrix4 b)
 	{
 		Matrix4 result;
@@ -100,6 +161,8 @@ namespace Math
 
 		return result;
 	}
+
+	/////////// MAT4 Rotations
 
 	Matrix4 RotateX(float t)
 	{
@@ -132,6 +195,8 @@ namespace Math
 		));
 	}
 
+	/////////// Translations & scale
+
 	Matrix4 Translate(Vector3 t)
 	{
 		return(Matrix4
@@ -154,6 +219,7 @@ namespace Math
 		));
 	}
 
+	/////////// 
 
 	Matrix4 Perspective(float fov, float aspect_ratio, float near, float far)
 	{
@@ -171,8 +237,9 @@ namespace Math
 		);
 	}
 
+	///////////
 
-	Matrix4 To3x3(Matrix4 i)
+	Matrix4 To3x3(Matrix4 i) //Convert a mat4 to a mat3
 	{
 		return Matrix4
 		(
@@ -183,6 +250,7 @@ namespace Math
 		);
 	}
 
+	///////////
 
 	Matrix4 lookAt(Vector3 from, Vector3 to, Vector3 up)
 	{
@@ -198,6 +266,8 @@ namespace Math
 			0, 0, 0, 1
 		);
 	}
+
+	///////////
 
 	Matrix4 Inverse(const Matrix4& i)
 	{
@@ -235,3 +305,4 @@ namespace Math
 			r3.x, r3.y, r3.z, Dotproduct(c, s)
 		));
 	}
+}
