@@ -19,5 +19,7 @@
     - Operations
   - Random essential functions
     - Conversion to radians
+    - Magnitude
+    - Cotangens
     
     
